@@ -1,21 +1,16 @@
 /****************************************************************
-* Auteurs : Maxime PORTAZ                                       *
-            Pierre BANWARTH                                     *
-*                                                               *
-* Version actuelle : Release 1.0                                *
-*                                                               *
-*                                                               *
-*                                                               *
-*                                                               *
+* Autors : Maxime PORTAZ
+*   (past) Pierre BANWARTH
+*
+* Version actuelle : 1.0
+*
+*
 *****************************************************************/
 
 
 
 #include "mainwindow.h"
 #include <QApplication>
-
-
-
 
 
 

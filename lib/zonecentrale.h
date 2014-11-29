@@ -49,11 +49,11 @@ class ZoneCentrale : public QWidget
         void modeChange(bool mode);
 
     public slots:
-        //Mises à jour
+        //Update
         void nouvelleImage(QPixmap nImage);
         void nouvelleImage(ImageRGB nImage);
 
-        //Menu Fichier
+        //Menu File
         void ouvrir();
         void sauvegarde();
 

@@ -62,42 +62,18 @@ void ZoneCentrale::initBool()
 
 
     //Moyenneur 3*3
-    moy3[0][0] = 1;
-    moy3[0][1] = 1;
-    moy3[0][2] = 1;
-    moy3[1][0] = 1;
-    moy3[1][1] = 1;
-    moy3[1][2] = 1;
-    moy3[2][0] = 1;
-    moy3[2][1] = 1;
-    moy3[2][2] = 1;
+	for(int i=0;i<3;i++)
+	{
+		for(int j=0;j<3;j++)
+			moy3[i][j] = 1;
+	}
 
     //Moyenneur 5*5
-    moy5[0][0] = 1;
-    moy5[0][1] = 1;
-    moy5[0][2] = 1;
-    moy5[0][3] = 1;
-    moy5[0][4] = 1;
-    moy5[1][0] = 1;
-    moy5[1][1] = 1;
-    moy5[1][2] = 1;
-    moy5[1][3] = 1;
-    moy5[1][4] = 1;
-    moy5[2][0] = 1;
-    moy5[2][1] = 1;
-    moy5[2][2] = 1;
-    moy5[2][3] = 1;
-    moy5[2][4] = 1;
-    moy5[3][0] = 1;
-    moy5[3][1] = 1;
-    moy5[3][2] = 1;
-    moy5[3][3] = 1;
-    moy5[3][4] = 1;
-    moy5[4][0] = 1;
-    moy5[4][1] = 1;
-    moy5[4][2] = 1;
-    moy5[4][3] = 1;
-    moy5[4][4] = 1;
+	for(int i=0;i<5;i++)
+	{
+		for(int j=0;j<5;j++)
+			moy5[i][j] = 1;
+	}
 
     //rehaussement
     matRehauss[0][0] = -1;
