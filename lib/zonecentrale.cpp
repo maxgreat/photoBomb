@@ -10,6 +10,7 @@ Fonctions d'initialisation                                                      
 
 ZoneCentrale::ZoneCentrale(QString path)
 {
+    label=NULL;
     initBool();
     initImages(path);
 }
@@ -17,6 +18,7 @@ ZoneCentrale::ZoneCentrale(QString path)
 
 ZoneCentrale::ZoneCentrale()
 {
+    label=NULL;
     initBool();
     image = 0;
     QFile fichier("save.data");
@@ -57,23 +59,19 @@ void ZoneCentrale::initBool()
     rect1 = QPoint();
     rect2 = QPoint();
 
-    setMouseTracking(true);
+   // setMouseTracking(true);
   //  grabMouse();
 
 
     //Moyenneur 3*3
-	for(int i=0;i<3;i++)
-	{
+    for(int i=0;i<3;i++)
 		for(int j=0;j<3;j++)
-			moy3[i][j] = 1;
-	}
+            moy3[i][j] = 1;
 
     //Moyenneur 5*5
-	for(int i=0;i<5;i++)
-	{
+    for(int i=0;i<5;i++)
 		for(int j=0;j<5;j++)
 			moy5[i][j] = 1;
-	}
 
     //rehaussement
     matRehauss[0][0] = -1;
@@ -134,27 +132,36 @@ Procédures pour l'affichage d'images                                           
 
 void ZoneCentrale::nouveauLayout(QPixmap im)
 {
-    label = new QLabel(this);
-    label->setMouseTracking(true);
-    label->installEventFilter(this);
-    label->setPixmap(im);
+    if(label == NULL){
+        printf("Ici");
+        label = new QLabel(this);
+        label->setMouseTracking(true);
+        label->installEventFilter(this);
+        label->setPixmap(im);
 
-    QVBoxLayout* imageLayout = new QVBoxLayout();
+        QVBoxLayout* imageLayout = new QVBoxLayout();
 
-    QScrollArea *scrollArea = new QScrollArea(this);
-    scrollArea->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-    scrollArea->setWidget(label);
+        QScrollArea *scrollArea = new QScrollArea(this);
+        scrollArea->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+        scrollArea->setWidget(label);
 
-    imageLayout->addWidget(scrollArea);
-
-    if(layout() != 0)
-        delete layout();
-    setLayout(imageLayout);
+        imageLayout->addWidget(scrollArea);
+        //imageLayout->addWidget(label);
+        //imageLayout->setWidget(label);
+        if(layout() != 0)
+            delete layout();
+        setLayout(imageLayout);
+    }
+    else{
+        //TODO : resize layout to fit the image
+        label->setPixmap(im);
+    }
 }
 
 
 void ZoneCentrale::nouvelleImage(QPixmap nImage)
 {
+
     if(image != 0)
         imagePrec = new QPixmap(*image);
     image = new QPixmap(nImage);
@@ -165,6 +172,7 @@ void ZoneCentrale::nouvelleImage(QPixmap nImage)
 
 void ZoneCentrale::nouvelleImage(ImageRGB nImage)
 {
+
     if(image != 0)
         imagePrec = new QPixmap(*image);
     image = new QPixmap();
@@ -424,7 +432,7 @@ void ZoneCentrale::mouseMoveEvent(QMouseEvent * event)
 void ZoneCentrale::mouseMoveEventOnLabel(QMouseEvent * event)
 {
     if(affichageInfos && !modeGrabcut)
-    {
+    {/*
         ImageRGB* im = new ImageRGB(image->toImage());
         QString str;
         QRgb couleur = im->pixel(event->x(), event->y());
@@ -432,7 +440,7 @@ void ZoneCentrale::mouseMoveEventOnLabel(QMouseEvent * event)
             str = QString("Valeur pixel: R%1, V%2, B%3").arg(qRed(couleur)).arg(qGreen(couleur)).arg(qBlue(couleur));
         else
             str = QString("Valeur pixel: Y%1, U%2, V%3").arg(toYUV_Y(couleur)).arg(toYUV_Cr(couleur)).arg(toYUV_Cb(couleur));
-        QToolTip::showText(event->globalPos(), str, this);
+        QToolTip::showText(event->globalPos(), str, this);*/
     }
     if(modeGrabcut && !rect1.isNull())
     {
