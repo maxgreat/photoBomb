@@ -8,37 +8,19 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+QMAKE_LIBS += `pkg-config opencv --libs`
+QMAKE_LIBDIR += /usr/lib/x86_64-linux-gnu/
+
 QMAKE_CXXFLAGS_RELEASE -= -O2
+QMAKE_CXXFLAGS_RELEASE += -O3 -Wunused-result
 QMAKE_LFLAGS_RELEASE -= -O1
-QMAKE_CXXFLAGS_RELEASE += -O3
 
 TARGET = photoBomb
 TEMPLATE = app
 
-#include opencv
-#win32:INCLUDEPATH += "D:\install\opencv\build\install\include"
-#win64:
 unix:INCLUDEPATH += "/usr/include"
 
-
-#win32:LIBS += -L D:/install/opencv/build/install/x64/mingw/lib/
-#win32:LIBS += libopencv_core248d
-#win32:LIBS += libopencv_imgproc248d
-#win32:LIBS += libopencv_highgui248d
-
-#win64:LIBS += -L D:/install/opencv/build/install/x64/mingw/lib/
-#win64:LIBS += libopencv_core248d
-#win64:LIBS += libopencv_imgproc248d
-#win64:LIBS += libopencv_highgui248d
-
-
 unix:LIBS += -L /usr/lib/
-unix:LIBS += lopencv_core248d
-unix:LIBS += lopencv_imgproc248d
-unix:LIBS += lopencv_highgui248d
-
-
-
 
 
 SOURCES += main.cpp\
