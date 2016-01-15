@@ -200,13 +200,7 @@ bool MainWindow::eventFilter(QObject *o, QEvent *e)
             centre->mouseMoveEvent(static_cast<QMouseEvent*>(e));
         else if(e->type() == QEvent::Wheel)
         {
-            QWheelEvent* we = static_cast<QWheelEvent*>(e);
-            int numDegrees = we->delta() / 8;
-            int numStep = numDegrees / 15;
-            if(numDegrees > 0)
-                centre->zoomIn(numStep);
-            else
-                centre->zoomOut(numStep);
+            //TODO
         }
         return true;
     }
